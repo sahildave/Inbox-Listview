@@ -52,11 +52,8 @@ public class MaterialListAdapter extends ArrayAdapter<DummyContent.DummyItem> {
         }
 
         ViewGroup.LayoutParams params = convertView.getLayoutParams();
-        params.height = parent.getHeight()/3;
+        params.height = parent.getHeight()/items.size();
         convertView.setLayoutParams(params);
-
-        // Populate the data into the template view using the data object
-        viewHolder.itemName.setText(item.content);
 
         if (DummyContent.isAnyItemSelected) {
             if(item.selected) {
@@ -71,6 +68,7 @@ public class MaterialListAdapter extends ArrayAdapter<DummyContent.DummyItem> {
         } else {
             AnimationsUtil.scaleBackAnimation(convertView);
             item.scaleLevel = 0;
+            viewHolder.itemName.setText(item.content + " is not selected");
         }
 
         Log.d("Material", "Item height is "+convertView.getHeight());
